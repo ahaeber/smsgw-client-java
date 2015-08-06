@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:sms="http://chimera.intele.com/gw/xsd/SMSGateway/Response/2013/02"
+	targetNamespace="http://chimera.intele.com/gw/xsd/SMSGateway/Response/2013/02">
+
+	<xsd:element name="response">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="batchReference" type="xsd:string" nillable="false" />
+				<xsd:element name="messageStatus" type="sms:messageStatus" minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="messageStatus">
+		<xsd:sequence>
+			<xsd:element name="statusCode" type="xsd:int" nillable="false" />
+			<xsd:element name="statusMessage" type="xsd:string" nillable="false" />
+			<xsd:element name="clientReference" type="xsd:string" nillable="false" />
+			<xsd:element name="recipient" type="xsd:string" nillable="false" />
+			<xsd:element name="messageId" type="xsd:string" minOccurs="0" />
+			<xsd:element name="sessionId" type="xsd:string" minOccurs="0" />
+			<xsd:element name="sequenceIndex" type="xsd:int" nillable="false" />
+		</xsd:sequence>
+	</xsd:complexType>	
+</xsd:schema>
