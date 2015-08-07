@@ -36,20 +36,22 @@ public class GatewayRequest {
 		 * @param username
 		 * @param password
 		 */
-		public Builder (int serviceId, String username, String password) {
+		public Builder(int serviceId, String username, String password) {
 			this.serviceId = serviceId;
 			this.username = username;
 			this.password = password;
 		}
 		/**
 		 * @param batchReference Reference ID that will be returned in the response.
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withBatchReference(String batchReference) {
 			this.batchReference = batchReference;
 			return this;
 		}
-
+		/**
+		 * @return the newly created gatewayrequest 
+		 */
 		public GatewayRequest build() {
 			return new GatewayRequest(this);
 		}
@@ -68,7 +70,9 @@ public class GatewayRequest {
 	public void addMessage(Sms sms) {
 		this.request.getMessage().add(sms.getMessage());
 	}
-
+	/**
+	 * @return the wrapped request
+	 */
 	public Request getRequest() {
 		return request;
 	}

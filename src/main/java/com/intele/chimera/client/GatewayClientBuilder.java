@@ -32,7 +32,7 @@ public class GatewayClientBuilder {
 	 * <p>Specify the Client to be used.
 	 * 
 	 * @param client
-	 * @return
+	 * @return the updated builder
 	 */
 	public GatewayClientBuilder withClient(Client client) {
 		if(configuration != null) {
@@ -46,7 +46,7 @@ public class GatewayClientBuilder {
 	 * <p>Override the default target server (https://smsgw.intele.com).
 	 * 
 	 * @param targetServer
-	 * @return
+	 * @return the updated builder
 	 */
 	public GatewayClientBuilder withTargetServer(String targetServer) {
 		if(targetServer == null) {
@@ -67,7 +67,7 @@ public class GatewayClientBuilder {
 	 *<p>Override the default media type.
 	 *
 	 * @param mediaType
-	 * @return
+	 * @return the updated builder
 	 */
 	public GatewayClientBuilder withMediaType(MediaType mediaType) {
 		this.mediaType = mediaType;
@@ -78,7 +78,7 @@ public class GatewayClientBuilder {
 	 * <p>Provide a custom configuration for the {@link Client}.
 	 * 
 	 * @param configuration
-	 * @return
+	 * @return the updated builder
 	 */
 	public GatewayClientBuilder withConfiguration(Configuration configuration) {
 		if(client != null) {
@@ -91,7 +91,7 @@ public class GatewayClientBuilder {
 	/**
 	 * Creates the GatewayClient.
 	 * 
-	 * @return
+	 * @return newly created gatewayClient
 	 */
 	public GatewayClient build() {
 		this.initializeVariables();

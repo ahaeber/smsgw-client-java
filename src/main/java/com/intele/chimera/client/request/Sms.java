@@ -18,6 +18,7 @@ import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Settings;
  * 	withOriginatorSettings(OriginatorTypeEnum.ALPHANUMERIC, "test").
  * 	withSendWindow(new SendWindow.Builder(DatatypeFactory.newInstance().newXMLGregorianCalendar("2015-08-06T12:00:00+02:00")).build()).
  * 	build();
+ * }
  * </pre>
  *
  * @author  gre
@@ -54,7 +55,7 @@ public class Sms {
 		 * @param price The cost for the recipient to receive the message. In lowest
 		 * monetary unit. See chapter 3.1  in the ITC SMS Gateway API specification for details.
 		 * Example: 200 (2,- NOK)
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withPrice(int price){
 			this.message.setPrice(price);
@@ -64,7 +65,7 @@ public class Sms {
 		 * Arbitrary client reference ID that will be returned in the
 		 * message response.
 		 * @param clientReference
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withClientReference(String clientReference){
 			this.message.setClientReference(clientReference);
@@ -77,7 +78,7 @@ public class Sms {
 		 * 1: low (slower)
 		 * 2: medium
 		 * 3: high (faster)
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withPriority(int priority){
 			this.sw.getSettings().setPriority(priority);
@@ -90,7 +91,7 @@ public class Sms {
 		 * delivered to a handset.
 		 * See chapter 3.3 in the ITC SMS Gateway API specification for valid values.
 		 * Example: 173
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withValidity(int validity ){
 			this.sw.getSettings().setValidity(validity);
@@ -99,7 +100,7 @@ public class Sms {
 		/**
 		 * @param differentiator Arbitrary string set by the client to enable grouping messages in
 		 * certain statistic reports. Example: pincode_messages
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withDifferentiator(String differentiator){
 			this.sw.getSettings().setDifferentiator(differentiator);
@@ -110,7 +111,7 @@ public class Sms {
 		 * Defines an age limit for message content. The mobile network operators enforces this.
 		 * IMPORTANT: If the service is a subscription service all CPA/GAS
 		 * messages must have age set to 18.
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withAge(int age){
 			this.sw.getSettings().setAge(age);
@@ -119,7 +120,7 @@ public class Sms {
 		/**
 		 * @param newSession Used to start a new session. See chapter 3.5 in the
 		 * ITC SMS Gateway API specification for details.
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withNewSession(boolean newSession){
 			this.sw.getSettings().setNewSession(newSession);
@@ -128,7 +129,7 @@ public class Sms {
 		/**
 		 * @param sessionId Used to continue an existing session. See chapter 3.5 in the
 		 * ITC SMS Gateway API for details.
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withSessionId(String sessionId){
 			this.sw.getSettings().setSessionId(sessionId);
@@ -137,7 +138,7 @@ public class Sms {
 		/**
 		 * @param invoiceNode Arbitrary string set by the client to enable grouping messages
 		 * on the service invoice.
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withInvoiceNode(String invoiceNode){
 			this.sw.getSettings().setInvoiceNode(invoiceNode);
@@ -145,7 +146,7 @@ public class Sms {
 		}
 		/**
 		 * @param autoDetectEncoding Default value is false. Currently not in use.
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withAutoDetectEncoding(boolean autoDetectEncoding){
 			this.sw.getSettings().setAutoDetectEncoding(autoDetectEncoding);
@@ -156,7 +157,7 @@ public class Sms {
 		 * If set to true the SMSGW will remove or safely substitute invalid
 		 * characters in the message content instead of rejecting the
 		 * message. See chapter 3.4 in the ITC SMS Gateway API for details.
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withSafeRemoveNonGsmCharacters(boolean safeRemoveNonGsmCharacters){
 			this.sw.getSettings().setSafeRemoveNonGsmCharacters(safeRemoveNonGsmCharacters);
@@ -167,7 +168,7 @@ public class Sms {
 		 * valid keys and values.
 		 * @param key
 		 * @param value
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withParameter(String key, String value){
 			Parameter parameter = new Parameter();
@@ -179,7 +180,7 @@ public class Sms {
 		/**
 		 * @param originatorType Specifies the type of originator. See chapter 3.2 in the ITC SMS Gateway API for details.
 		 * @param originator Depends on the originatorType. Examples: "+4799999999", "Intelecom", "1960"
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withOriginatorSettings(OriginatorTypeEnum originatorType, String originator){
 			OriginatorSettings originatorSettings = new OriginatorSettings();
@@ -191,7 +192,7 @@ public class Sms {
 		/**
 		 * <p>Specify GAS (Goods and Services) values. See chapter 3.1 in the ITC SMS Gateway API for details.
 		 * @param gasSettings
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withGasSettings(GasSettings gasSettings) {
 			this.sw.getSettings().setGasSettings(gasSettings.getGasSettings());
@@ -200,13 +201,15 @@ public class Sms {
 		/**
 		 * <p>Specify the send window for the message. See chapter 3.6 in the ITC SMS Gateway API.
 		 * @param sendWindow
-		 * @return
+		 * @return the updated builder
 		 */
 		public Builder withSendWindow(SendWindow sendWindow) {
 			this.sw.getSettings().setSendWindow(sendWindow.getSendWindow());
 			return this;
 		}
-
+		/**
+		 * @return the newly created Sms
+		 */
 		public Sms build() {
 			return new Sms(this);
 		}
@@ -231,7 +234,10 @@ public class Sms {
 		}
 	}
 
-	protected Message getMessage() {
+	/**
+	 * @return the wrapped message
+	 */
+	public Message getMessage() {
 		return message;
 	}
 }

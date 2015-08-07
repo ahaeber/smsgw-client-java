@@ -37,44 +37,64 @@ public class SendWindow {
 		this.sendWindow.setStopDate(builder.stopDate);
 		this.sendWindow.setStopTime(builder.stopTime);
 	}
-
+	
 	public static class Builder {
 		private XMLGregorianCalendar startDate;
 		private XMLGregorianCalendar startTime;
 		private XMLGregorianCalendar stopDate;
 		private XMLGregorianCalendar stopTime;
-		
+	
+		/**
+		 * @param startDate
+		 * @param startTime
+		 */
 		public Builder(XMLGregorianCalendar startDate, XMLGregorianCalendar startTime) {
 			this.startDate = startDate;
 			this.startTime = startTime;
 		}
-		
+		/**
+		 * @param startDateTime
+		 */
 		public Builder(XMLGregorianCalendar startDateTime) {
 			this.startDate = startDateTime;
 			this.startTime = startDateTime;
 		}
 		
+		/**
+		 * @param stopDate
+		 * @return the updated builder
+		 */
 		public Builder withStopDate(XMLGregorianCalendar stopDate) {
 			this.stopDate = stopDate;
 			return this;
 		}
-		
+		/**
+		 * @param stopTime
+		 * @return the updated builder
+		 */
 		public Builder withStopTime(XMLGregorianCalendar stopTime) {
 			this.stopTime = stopTime;
 			return this;
 		}
-		
+		/**
+		 * @param stopDateTime
+		 * @return the updated builder
+		 */
 		public Builder withStopDateTime(XMLGregorianCalendar stopDateTime) {
 			this.stopDate = stopDateTime;
 			this.stopTime = stopDateTime;
 			return this;
 		}
-		
+		/**
+		 * @return the newly created sendWindow
+		 */
 		public SendWindow build() {
 			return new SendWindow(this);
 		}
 	}
-	
+	/**
+	 * @return the wrapped sendWindow
+	 */
 	public com.intele.chimera.gw.xsd.smsgateway.request._2013._02.SendWindow getSendWindow() {
 		return this.sendWindow;
 	}

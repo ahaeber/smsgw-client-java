@@ -19,7 +19,7 @@ public interface GatewayClient {
 	 * <p>Sends a SMS request to the Intelecom SMS Gateway.
 	 *
 	 * @param gatewayRequest
-	 * @return
+	 * @return the gateway response
 	 */
 	public Response send(GatewayRequest gatewayRequest);
 
@@ -27,7 +27,7 @@ public interface GatewayClient {
 	 * <p>Sends a SMS request to the Intelecom SMS Gateway.
 	 * 
 	 * @param request
-	 * @return
+	 * @return the gateway response
 	 */
 	public Response send(Request request);
 	
