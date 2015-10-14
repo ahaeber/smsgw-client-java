@@ -20,8 +20,9 @@ import com.intele.chimera.client.impl.GatewayClientImpl;
  */
 public class GatewayClientBuilder {
 	
-	public static final String DEFAULT_TARGET = "https://smsgw.intele.com/gw/rs/sendMessages";
-	public static final MediaType DEFAULT_MEDIA_TYPE = MediaType.APPLICATION_XML_TYPE; 
+	public static final String DEFAULT_TARGET_SERVER = "https://smsgw.intele.com";
+	public static final String DEFAULT_TARGET_SERVER_PATH = "/gw/rs/sendMessages";
+	public static final MediaType DEFAULT_MEDIA_TYPE = MediaType.APPLICATION_XML_TYPE;
 
 	private Client client;
 	private String target;
@@ -58,7 +59,7 @@ public class GatewayClientBuilder {
 		} else {
 			b.append(targetServer);
 		}
-		b.append("/gw/rs/sendMessages");
+		b.append(DEFAULT_TARGET_SERVER_PATH);
 		this.target = b.toString();
 		
 		return this;
@@ -112,7 +113,7 @@ public class GatewayClientBuilder {
 			}
 		}
 		if(target == null) {
-			target = DEFAULT_TARGET;
+			target = DEFAULT_TARGET_SERVER + DEFAULT_TARGET_SERVER_PATH;
 		}
 		if(mediaType == null) {
 			mediaType = DEFAULT_MEDIA_TYPE;
