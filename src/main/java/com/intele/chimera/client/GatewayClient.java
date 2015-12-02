@@ -1,6 +1,7 @@
 package com.intele.chimera.client;
 
 import javax.ws.rs.client.Client;
+
 import com.intele.chimera.client.request.GatewayRequest;
 import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Request;
 import com.intele.chimera.gw.xsd.smsgateway.response._2013._02.Response;
@@ -19,7 +20,8 @@ import com.intele.chimera.gw.xsd.smsgateway.response._2013._02.Response;
 public interface GatewayClient extends AutoCloseable {
 
 	/**
-	 * <p>Sends a SMS request to the Intelecom SMS Gateway.
+	 * <p>Send a request with one or more SMS messages.
+	 * <p>Use the {@link GatewayRequest} builder class to create the request.
 	 *
 	 * @param gatewayRequest
 	 * @return the gateway response
@@ -27,7 +29,7 @@ public interface GatewayClient extends AutoCloseable {
 	public Response send(GatewayRequest gatewayRequest);
 
 	/**
-	 * <p>Sends a SMS request to the Intelecom SMS Gateway.
+	 * <p>Send a request with one or more SMS messages
 	 * 
 	 * @param request
 	 * @return the gateway response

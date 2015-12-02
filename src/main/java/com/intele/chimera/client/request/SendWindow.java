@@ -45,15 +45,17 @@ public class SendWindow {
 		private XMLGregorianCalendar stopTime;
 	
 		/**
-		 * @param startDate
-		 * @param startTime
+		 * Set when the message should be sent.
+		 * @param startDate the date to send the message
+		 * @param startTime the time to send the message
 		 */
 		public Builder(XMLGregorianCalendar startDate, XMLGregorianCalendar startTime) {
 			this.startDate = startDate;
 			this.startTime = startTime;
 		}
 		/**
-		 * @param startDateTime
+		 * Set when the message should be sent.
+		 * @param startDateTime the datetime to send the message
 		 */
 		public Builder(XMLGregorianCalendar startDateTime) {
 			this.startDate = startDateTime;
@@ -61,7 +63,7 @@ public class SendWindow {
 		}
 		
 		/**
-		 * @param stopDate
+		 * @param stopDate the date
 		 * @return the updated builder
 		 */
 		public Builder withStopDate(XMLGregorianCalendar stopDate) {

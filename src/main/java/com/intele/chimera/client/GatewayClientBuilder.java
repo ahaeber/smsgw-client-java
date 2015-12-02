@@ -8,9 +8,9 @@ import javax.ws.rs.core.MediaType;
 import com.intele.chimera.client.impl.GatewayClientImpl;
 
 /**
- * <p>Builder to create a {@link GatewayClient} that holds a reference to a {@link Client} object that it uses to send messages to the Intelecom SMS Gateway.
+ * <p>Builder to create a {@link GatewayClient} that holds a reference to a {@link Client} object that it uses to send requests to the Intelecom SMS Gateway.
  * <p>All {@link Client} objects should be properly closed to avoid leaking resources. Calling {@link GatewayClient#close()} will also close {@link Client#close() the client connection}.
- * <p>The builder will use the default JAX-RS builder implementation - {@link ClientBuilder#newClient()}. It is also possible to either add a {@link Configuration} or set the {@link Client}
+ * <p>The builder uses the default JAX-RS builder implementation - {@link ClientBuilder#newClient()}. It is also possible to either add a {@link Configuration} or set the {@link Client}
  * that should be used.
  * <p>The creation of a new {@link Client} is a relatively expensive operation and so the {@link GatewayClient} should be reused if possible. 
  *
@@ -30,7 +30,7 @@ public class GatewayClientBuilder {
 	private Configuration configuration;
 
 	/**
-	 * <p>Specify the Client to be used.
+	 * <p>Specify the {@link Client} to be used.
 	 * 
 	 * @param client
 	 * @return the updated builder
@@ -65,7 +65,7 @@ public class GatewayClientBuilder {
 		return this;
 	}
 	/**
-	 *<p>Override the default media type.
+	 * <p>Override the default media type {@value MediaType#APPLICATION_XML_TYPE}.
 	 *
 	 * @param mediaType
 	 * @return the updated builder

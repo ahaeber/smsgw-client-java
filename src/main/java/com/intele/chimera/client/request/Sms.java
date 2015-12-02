@@ -8,14 +8,14 @@ import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Parameter;
 import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Settings;
 
 /**
- * <p>Convenience class using the builder pattern to create a new {@link Message} object.
+ * <p>Convenience class to create a new {@link Message} objects using the builder pattern.
  * <p>Example:
  * <pre>
  * {@code
  * Sms sms = new Sms.
- * 	Builder("+4741000000", "test message").
+ * 	Builder("+4741000000", "Test message").
  * 	withPrice(0).
- * 	withOriginatorSettings(OriginatorTypeEnum.ALPHANUMERIC, "test").
+ * 	withOriginatorSettings(OriginatorTypeEnum.ALPHANUMERIC, "originator").
  * 	withSendWindow(new SendWindow.Builder(DatatypeFactory.newInstance().newXMLGregorianCalendar("2015-08-06T12:00:00+02:00")).build()).
  * 	build();
  * }
@@ -37,11 +37,8 @@ public class Sms {
 		private SettingsWrapper sw;
 
 		/**
-		 * @param recipient The MSISDN of the recipient. The format should follow the ITU-T E.164 standard with a + prefix.
-		 * Example: +4792000001.
-		 * Note: This must be a valid MSISDN, that is Mobile phone
-		 * number. E.g. for Norway these numbers start with 4, 9, 58 or
-		 * 59.
+		 * Set the recipient and message content.
+		 * @param recipient The MSISDN of the recipient. The format should follow the ITU-T E.164 standard with a + prefix, e.g. +4792000001.
 		 * @param content The message payload to send, typically the message text.
 		 * See chapter 3.4 in the ITC SMS Gateway API specification for more details
 		 */
@@ -52,6 +49,7 @@ public class Sms {
 			this.message.setContent(content);
 		}
 		/**
+		 * Set the price of the message.
 		 * @param price The cost for the recipient to receive the message. In lowest
 		 * monetary unit. See chapter 3.1  in the ITC SMS Gateway API specification for details.
 		 * Example: 200 (2,- NOK)
@@ -62,9 +60,8 @@ public class Sms {
 			return this;
 		}
 		/**
-		 * Arbitrary client reference ID that will be returned in the
-		 * message response.
-		 * @param clientReference
+		 * Arbitrary client reference ID that will be returned in the message response.
+		 * @param clientReference the client message ID
 		 * @return the updated builder
 		 */
 		public Builder withClientReference(String clientReference){
@@ -72,6 +69,7 @@ public class Sms {
 			return this;
 		}
 		/**
+		 * Set the priority of the message.
 		 * @param priority Uses service value unless specified.
 		 * Used to prioritize between messages sent from the same
 		 * service.
@@ -85,6 +83,7 @@ public class Sms {
 			return this;
 		}
 		/**
+		 * Set a validity for the message.
 		 * @param validity Uses service value unless specified.
 		 * Specifies the TTL (time to live) for the message, i.e. how long
 		 * before the message times out in cases where it cannot be
@@ -98,6 +97,7 @@ public class Sms {
 			return this;
 		}
 		/**
+		 * Sets the name of the message group.
 		 * @param differentiator Arbitrary string set by the client to enable grouping messages in
 		 * certain statistic reports. Example: pincode_messages
 		 * @return the updated builder
@@ -107,6 +107,7 @@ public class Sms {
 			return this;
 		}
 		/**
+		 * Sets the minimum age of the recipient.
 		 * @param age Only relevant for CPA/GAS messages.
 		 * Defines an age limit for message content. The mobile network operators enforces this.
 		 * IMPORTANT: If the service is a subscription service all CPA/GAS
@@ -118,6 +119,7 @@ public class Sms {
 			return this;
 		}
 		/**
+		 * Start a new session.
 		 * @param newSession Used to start a new session. See chapter 3.5 in the
 		 * ITC SMS Gateway API specification for details.
 		 * @return the updated builder
@@ -127,6 +129,7 @@ public class Sms {
 			return this;
 		}
 		/**
+		 * Use an existing session.
 		 * @param sessionId Used to continue an existing session. See chapter 3.5 in the
 		 * ITC SMS Gateway API for details.
 		 * @return the updated builder
@@ -136,6 +139,7 @@ public class Sms {
 			return this;
 		}
 		/**
+		 * Sets a custom group name for the invoice. 
 		 * @param invoiceNode Arbitrary string set by the client to enable grouping messages
 		 * on the service invoice.
 		 * @return the updated builder
@@ -145,14 +149,7 @@ public class Sms {
 			return this;
 		}
 		/**
-		 * @param autoDetectEncoding Default value is false. Currently not in use.
-		 * @return the updated builder
-		 */
-		public Builder withAutoDetectEncoding(boolean autoDetectEncoding){
-			this.sw.getSettings().setAutoDetectEncoding(autoDetectEncoding);
-			return this;
-		}
-		/**
+		 * Decides if non-GSM characters should be removed from the content text.
 		 * @param safeRemoveNonGsmCharacters Default value is false.
 		 * If set to true the SMSGW will remove or safely substitute invalid
 		 * characters in the message content instead of rejecting the
@@ -178,6 +175,7 @@ public class Sms {
 			return this;
 		}
 		/**
+		 * Sets the originator.
 		 * @param originatorType Specifies the type of originator. See chapter 3.2 in the ITC SMS Gateway API for details.
 		 * @param originator Depends on the originatorType. Examples: "+4799999999", "Intelecom", "1960"
 		 * @return the updated builder
@@ -200,6 +198,7 @@ public class Sms {
 		}
 		/**
 		 * <p>Specify the send window for the message. See chapter 3.6 in the ITC SMS Gateway API.
+		 * <p>Used if the message should be queued and sent in the future instead of immediately.
 		 * @param sendWindow
 		 * @return the updated builder
 		 */
