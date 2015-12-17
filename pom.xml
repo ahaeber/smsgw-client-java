@@ -2,14 +2,48 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.intele.chimera</groupId>
 	<artifactId>smsgw-client-java</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
+	<name>SMS Gateway client</name>
+	<description>Client library for the Intelecom SMS Gateway application</description>
+	<url>https://www.intelecom.no/vare-losninger/mobile-tjenester/sms/sms-api/</url>
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Gunnar Grenlee</name>
+			<email>gunnar.grenlee@intele.com</email>
+			<organization>Intelecom Group AS</organization>
+			<organizationUrl>https://www.intelecom.no/</organizationUrl>
+		</developer>
+		<developer>
+			<name>Andreas Häber</name>
+			<email>andreas.haber@intele.com</email>
+			<organization>Intelecom Group AS</organization>
+			<organizationUrl>https://www.intelecom.no/</organizationUrl>
+		</developer>
+		<developer>
+			<name>Sven Ståle Osa</name>
+			<email>sven.stale.osa@intele.com</email>
+			<organization>Intelecom Group AS</organization>
+			<organizationUrl>https://www.intelecom.no/</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:https://github.com/Intelecom/smsgw-client-java</connection>
+		<developerConnection>scm:git:https://github.com/Intelecom/smsgw-client-java</developerConnection>
+		<url>https://github.com/Intelecom/smsgw-client-java</url>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
 	<build>
@@ -40,10 +74,21 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.3</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
 						<goals>
 							<goal>jar</goal>
 						</goals>
@@ -98,18 +143,14 @@
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<version>2.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-joda-time</artifactId>
-			<version>1.1.0</version>
+			<version>2.2.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>1.10.19</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
