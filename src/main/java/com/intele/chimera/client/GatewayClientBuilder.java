@@ -10,8 +10,8 @@ import com.intele.chimera.client.impl.GatewayClientImpl;
 /**
  * <p>Builder to create a {@link GatewayClient} that holds a reference to a {@link Client} object that it uses to send requests to the Intelecom SMS Gateway.
  * <p>All {@link Client} objects should be properly closed to avoid leaking resources. Calling {@link GatewayClient#close()} will also close {@link Client#close() the client connection}.
- * <p>The builder uses the default JAX-RS builder implementation - {@link ClientBuilder#newClient()}. It is also possible to either add a {@link Configuration} or set the {@link Client}
- * that should be used.
+ * <p>The builder uses the default JAX-RS builder implementation - {@link ClientBuilder#newClient()}. It is also possible to either add a {@link Configuration} or specify the {@link Client}
+ * yourself.
  * <p>The creation of a new {@link Client} is a relatively expensive operation and so the {@link GatewayClient} should be reused if possible. 
  *
  * @author gre

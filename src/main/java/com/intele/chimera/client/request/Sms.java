@@ -227,7 +227,6 @@ public class Sms {
 
 	private Sms(Builder builder) {
 		this.message = builder.message;
-		System.out.println(builder.sw);
 		if(builder.sw.settings != null) {
 			this.message.setSettings(builder.sw.settings);
 		}
