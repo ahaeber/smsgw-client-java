@@ -13,13 +13,11 @@ The client implementation uses the JAX-RS 2.0 [Client interface](https://docs.or
 ## Maven ##
 
 ```XML
-<dependencies>
-	<dependency>
-		<groupId>com.intele.chimera</groupId>
-		<artifactId>smsgw-client-java</artifactId>
-		<version>1.0.0</version>
-	</dependency>
-...
+<dependency>
+	<groupId>com.intele.chimera</groupId>
+	<artifactId>smsgw-client-java</artifactId>
+	<version>1.0.0</version>
+</dependency>
 ```
 ## Gradle ##
 
@@ -34,7 +32,7 @@ compile "com.intele.chimera:smsgw-client-java:1.0.0"
 try(GatewayClient gatewayClient = new GatewayClientBuilder().build()) {
 	GatewayRequest gatewayRequest = new GatewayRequest.Builder(100, "username", "password").build();
 	gatewayRequest.addMessage(
-			new Sms.Builder("+4741915590", "Test message").withPrice(0).build());
+			new Sms.Builder("+4741000000", "Test message").withPrice(0).build());
 	Response response = gatewayClient.send(gatewayRequest);
 
 	System.out.println(response.getMessageStatus().get(0).getStatusCode());
