@@ -1,6 +1,3 @@
 com.intele.chimera.client
 com.intele.chimera.client.impl
 com.intele.chimera.client.request
-com.intele.chimera.gw.xsd.smsgateway.fault._2013._02
-com.intele.chimera.gw.xsd.smsgateway.request._2013._02
-com.intele.chimera.gw.xsd.smsgateway.response._2013._02
