@@ -3,9 +3,9 @@
 Travis: [![Build Status](https://travis-ci.org/Intelecom/smsgw-client-java.svg?branch=master)](https://travis-ci.org/Intelecom/smsgw-client-java)
 
 # About #
-This Java library contains some convenience APIs that lets you connect to the Intelecom SMS Gateway. Alternatively, you could integrate directly with one of the [interfaces](https://github.com/Intelecom/sms/blob/master/Interfaces-general.md) yourself.
+This Java library contains some convenience [APIs](http://intelecom.github.io/smsgw-client-java/apidocs/index.html) that lets you connect to the Intelecom SMS Gateway. Alternatively, you could integrate directly with one of the [interfaces](https://github.com/Intelecom/sms/blob/master/Interfaces-general.md) yourself.
 
-The library consist of two parts: One client builder and one request builder.
+The library consist of two parts: [One client builder](http://intelecom.github.io/smsgw-client-java/apidocs/com/intele/chimera/client/GatewayClientBuilder.html) and [builders to create a request](http://intelecom.github.io/smsgw-client-java/apidocs/com/intele/chimera/client/request/package-summary.html).
 
 The client implementation uses the JAX-RS 2.0 [Client interface](https://docs.oracle.com/javaee/7/api/javax/ws/rs/client/Client.html). Therefore, you need to run it in a JAX-RS 2.0 J2EE compliant container or provide a JAX-RS 2.0 implementation yourself (e.g. [Jersey](https://jersey.java.net/)).
 
@@ -19,6 +19,7 @@ The client implementation uses the JAX-RS 2.0 [Client interface](https://docs.or
 	<version>1.0.0</version>
 </dependency>
 ```
+
 ## Gradle ##
 
 ```
