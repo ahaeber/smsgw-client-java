@@ -22,7 +22,7 @@ import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Request;
  */
 public class GatewayRequest {
 
-	private final Request request = new Request();
+	private final Request request;
 
 	public static class Builder {
 		private int serviceId;
@@ -58,6 +58,7 @@ public class GatewayRequest {
 	}
 
 	private GatewayRequest(Builder builder) {
+		this.request = new Request();
 		this.request.setServiceId(builder.serviceId);
 		this.request.setUsername(builder.username);
 		this.request.setPassword(builder.password);

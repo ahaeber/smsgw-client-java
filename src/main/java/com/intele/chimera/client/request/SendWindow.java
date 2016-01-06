@@ -28,7 +28,7 @@ import com.intele.chimera.client.GatewayClient;
  */
 public class SendWindow {
 	
-	private com.intele.chimera.gw.xsd.smsgateway.request._2013._02.SendWindow sendWindow;
+	private final com.intele.chimera.gw.xsd.smsgateway.request._2013._02.SendWindow sendWindow;
 	
 	private SendWindow(Builder builder) {
 		this.sendWindow = new com.intele.chimera.gw.xsd.smsgateway.request._2013._02.SendWindow();

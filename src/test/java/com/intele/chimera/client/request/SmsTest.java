@@ -2,17 +2,21 @@ package com.intele.chimera.client.request;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
 import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Message;
 import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.OriginatorTypeEnum;
+import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Parameter;
 import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Settings;
 
 /**
  * Tests for the builder.
  * 
  * @author gre
- * @version 1.0		Dec 17, 2015
+ * @version 1.1		Jan 6, 2015
  */
 public class SmsTest {
 
@@ -45,8 +49,15 @@ public class SmsTest {
 		String originator = "alphanumeric";
 		String key1 = "key1";
 		String value1 = "value1";
+		Parameter p1 = new Parameter();
+		p1.setKey(key1);
+		p1.setValue(value1);
+		Parameter p2 = new Parameter();
 		String key2 = "key2";
 		String value2 = "value2";
+		p2.setKey(key2);
+		p2.setValue(value2);
+		List<Parameter> parameterList = Arrays.asList(p1, p2); 
 		int price = 5000;
 		int priority = 5;
 		boolean safeRemoveNonGsmCharacters = true;
@@ -62,8 +73,7 @@ public class SmsTest {
 				withInvoiceNode(invoiceNode).
 				withNewSession(newSession).
 				withOriginatorSettings(originatorType, originator).
-				withParameter(key1, value1).
-				withParameter(key2, value2).
+				withParameters(parameterList).
 				withPrice(price).
 				withPriority(priority).
 				withSafeRemoveNonGsmCharacters(safeRemoveNonGsmCharacters).

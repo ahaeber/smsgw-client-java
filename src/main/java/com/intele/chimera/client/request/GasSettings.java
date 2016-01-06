@@ -18,7 +18,7 @@ package com.intele.chimera.client.request;
  */
 public class GasSettings {
 
-	private com.intele.chimera.gw.xsd.smsgateway.request._2013._02.GasSettings gasSettings;
+	private final com.intele.chimera.gw.xsd.smsgateway.request._2013._02.GasSettings gasSettings;
 	
 	private GasSettings(Builder builder) {
 		gasSettings = new com.intele.chimera.gw.xsd.smsgateway.request._2013._02.GasSettings();

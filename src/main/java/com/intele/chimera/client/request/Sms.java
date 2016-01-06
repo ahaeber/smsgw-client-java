@@ -1,5 +1,7 @@
 package com.intele.chimera.client.request;
 
+import java.util.List;
+
 import com.intele.chimera.client.GatewayClient;
 import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Message;
 import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.OriginatorSettings;
@@ -22,7 +24,7 @@ import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Settings;
  * </pre>
  *
  * @author  gre
- * @version 1.0		Aug 6, 2015
+ * @version 1.1		Jan 6, 2016
  * @see GatewayClient#send(GatewayRequest)
  * @see GatewayRequest
  * @see GasSettings
@@ -30,11 +32,25 @@ import com.intele.chimera.gw.xsd.smsgateway.request._2013._02.Settings;
  */
 public class Sms {
 
-	private Message message;
+	private final Message message;
 
 	public static class Builder {
-		private Message message;
-		private SettingsWrapper sw;
+		private String recipient;
+		private String content;
+		private Integer price;
+		private String clientReference;
+		private Integer priority;
+		private Integer validity;
+		private String differentiator;
+		private Integer age;
+		private Boolean newSession;
+		private String sessionId;
+		private String invoiceNode;
+		private Boolean safeRemoveNonGsmCharacters;
+		private List<Parameter> parameters;
+		private OriginatorSettings originatorSettings;
+		private GasSettings gasSettings;
+		private SendWindow sendWindow;
 
 		/**
 		 * Set the recipient and message content.
@@ -43,10 +59,8 @@ public class Sms {
 		 * See chapter 3.4 in the ITC SMS Gateway API specification for more details
 		 */
 		public Builder(String recipient, String content) {
-			this.message = new Message();
-			this.sw = new SettingsWrapper();
-			this.message.setRecipient(recipient);
-			this.message.setContent(content);
+			this.recipient = recipient;
+			this.content = content;
 		}
 		/**
 		 * Set the price of the message.
@@ -56,7 +70,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withPrice(int price){
-			this.message.setPrice(price);
+			this.price = price;
 			return this;
 		}
 		/**
@@ -65,7 +79,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withClientReference(String clientReference){
-			this.message.setClientReference(clientReference);
+			this.clientReference = clientReference;
 			return this;
 		}
 		/**
@@ -79,7 +93,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withPriority(int priority){
-			this.sw.getSettings().setPriority(priority);
+			this.priority = priority;
 			return this;
 		}
 		/**
@@ -93,7 +107,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withValidity(int validity ){
-			this.sw.getSettings().setValidity(validity);
+			this.validity = validity;
 			return this;
 		}
 		/**
@@ -103,7 +117,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withDifferentiator(String differentiator){
-			this.sw.getSettings().setDifferentiator(differentiator);
+			this.differentiator = differentiator;
 			return this;
 		}
 		/**
@@ -115,7 +129,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withAge(int age){
-			this.sw.getSettings().setAge(age);
+			this.age = age;
 			return this;
 		}
 		/**
@@ -125,7 +139,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withNewSession(boolean newSession){
-			this.sw.getSettings().setNewSession(newSession);
+			this.newSession = newSession;
 			return this;
 		}
 		/**
@@ -135,7 +149,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withSessionId(String sessionId){
-			this.sw.getSettings().setSessionId(sessionId);
+			this.sessionId = sessionId;
 			return this;
 		}
 		/**
@@ -145,7 +159,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withInvoiceNode(String invoiceNode){
-			this.sw.getSettings().setInvoiceNode(invoiceNode);
+			this.invoiceNode = invoiceNode;
 			return this;
 		}
 		/**
@@ -157,7 +171,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withSafeRemoveNonGsmCharacters(boolean safeRemoveNonGsmCharacters){
-			this.sw.getSettings().setSafeRemoveNonGsmCharacters(safeRemoveNonGsmCharacters);
+			this.safeRemoveNonGsmCharacters = safeRemoveNonGsmCharacters;
 			return this;
 		}
 		/**
@@ -167,11 +181,8 @@ public class Sms {
 		 * @param value
 		 * @return the updated builder
 		 */
-		public Builder withParameter(String key, String value){
-			Parameter parameter = new Parameter();
-			parameter.setKey(key);
-			parameter.setValue(value);
-			this.sw.getSettings().getParameter().add(parameter);
+		public Builder withParameters(List<Parameter> parameters){
+			this.parameters = parameters;
 			return this;
 		}
 		/**
@@ -181,10 +192,9 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withOriginatorSettings(OriginatorTypeEnum originatorType, String originator){
-			OriginatorSettings originatorSettings = new OriginatorSettings();
+			this.originatorSettings = new OriginatorSettings();
 			originatorSettings.setOriginator(originator);
 			originatorSettings.setOriginatorType(originatorType);
-			this.sw.getSettings().setOriginatorSettings(originatorSettings);;
 			return this;
 		}
 		/**
@@ -193,7 +203,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withGasSettings(GasSettings gasSettings) {
-			this.sw.getSettings().setGasSettings(gasSettings.getGasSettings());
+			this.gasSettings = gasSettings;
 			return this;
 		}
 		/**
@@ -203,7 +213,7 @@ public class Sms {
 		 * @return the updated builder
 		 */
 		public Builder withSendWindow(SendWindow sendWindow) {
-			this.sw.getSettings().setSendWindow(sendWindow.getSendWindow());
+			this.sendWindow = sendWindow;
 			return this;
 		}
 		/**
@@ -212,23 +222,55 @@ public class Sms {
 		public Sms build() {
 			return new Sms(this);
 		}
-
-		private class SettingsWrapper {
-			private Settings settings = null;
-
-			private Settings getSettings() {
-				if(settings == null) {
-					this.settings = new Settings();
-				}
-				return settings;
-			}
+		
+		private boolean hasSettings() {
+			return (
+					priority != null ||
+					validity != null ||
+					differentiator != null ||
+					age != null ||
+					newSession != null ||
+					sessionId != null ||
+					invoiceNode != null ||
+					safeRemoveNonGsmCharacters != null ||
+					parameters != null ||
+					originatorSettings != null ||
+					gasSettings != null ||
+					sendWindow != null
+					);
 		}
 	}
 
 	private Sms(Builder builder) {
-		this.message = builder.message;
-		if(builder.sw.settings != null) {
-			this.message.setSettings(builder.sw.settings);
+		this.message = new Message();
+		this.message.setClientReference(builder.clientReference);
+		this.message.setContent(builder.content);
+		this.message.setPrice(builder.price);
+		this.message.setRecipient(builder.recipient);
+		
+		if(builder.hasSettings()) {
+			Settings settings = new Settings();
+			settings.setAge(builder.age);
+			settings.setDifferentiator(builder.differentiator);
+			if(builder.gasSettings != null) {
+				settings.setGasSettings(builder.gasSettings.getGasSettings());
+			}
+			settings.setInvoiceNode(builder.invoiceNode);
+			settings.setNewSession(builder.newSession);
+			settings.setOriginatorSettings(builder.originatorSettings);
+			settings.setPriority(builder.priority);
+			settings.setSafeRemoveNonGsmCharacters(builder.safeRemoveNonGsmCharacters);
+			if(builder.sendWindow != null) {
+				settings.setSendWindow(builder.sendWindow.getSendWindow());
+			}
+			settings.setSessionId(builder.sessionId);
+			settings.setValidity(builder.validity);
+			if(builder.parameters != null) {
+				for(Parameter p : builder.parameters) {
+					settings.getParameter().add(p);
+				}
+			}
+			this.message.setSettings(settings);
 		}
 	}
 
