@@ -2,4 +2,4 @@ language: java
 jdk:
   - oraclejdk7
 after_success:
-  - mvn jacoco:report coveralls:jacoco
+  - mvn clean test org.jacoco:jacoco-maven-plugin:report org.eluder.coveralls:coveralls-maven-plugin:report
