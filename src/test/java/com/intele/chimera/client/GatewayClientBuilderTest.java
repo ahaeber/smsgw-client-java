@@ -46,6 +46,22 @@ public class GatewayClientBuilderTest {
 	}
 	
 	@Test
+	public void shouldAllowTargetServerWithAndWithoutTrailingSpace() throws Exception {
+		String targetServer = "targetServer";
+		
+		GatewayClientBuilder gatewayClientBuilder = new GatewayClientBuilder().withTargetServer(targetServer);
+		
+		Field f = gatewayClientBuilder.getClass().getDeclaredField("target");
+		f.setAccessible(true);
+		String target = (String) f.get(gatewayClientBuilder);
+		assertThat(target).isEqualTo(targetServer+GatewayClientBuilder.DEFAULT_TARGET_SERVER_PATH);
+		
+		gatewayClientBuilder.withTargetServer("targetServer/");
+		target = (String) f.get(gatewayClientBuilder);
+		assertThat(target).isEqualTo(targetServer+GatewayClientBuilder.DEFAULT_TARGET_SERVER_PATH);
+	}
+	
+	@Test
 	public void testBuilderWithRequiredParameters() throws Exception {
 		GatewayClient gatewayClient = new GatewayClientBuilder().build();
 		
