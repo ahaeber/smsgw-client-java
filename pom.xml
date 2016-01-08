@@ -181,7 +181,7 @@
 						<version>0.7.5.201505241946</version>
 						<configuration>
 							<includes>
-								<include>com/intele/chimera/client/*</include>
+								<include>com/intele/chimera/client/**</include>
 							</includes>
 						</configuration>
 						<executions>
