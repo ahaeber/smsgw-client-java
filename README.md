@@ -4,6 +4,7 @@ smsgw-client-java
 [![Build Status](https://img.shields.io/travis/Intelecom/smsgw-client-java.svg?branch=master&style=flat-square)](https://travis-ci.org/Intelecom/smsgw-client-java)
 [![Coverage Status](https://img.shields.io/coveralls/Intelecom/smsgw-client-java.svg?branch=master&service=github&style=flat-square)](https://coveralls.io/github/Intelecom/smsgw-client-java?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.intele.chimera/smsgw-client-java/badge.svg?style=flat-square)](https://maven-badges.herokuapp.com/maven-central/com.intele.chimera/smsgw-client-java/)
+[![Codacy coverage](https://img.shields.io/codacy/grade/b793d8d11fce4524bedf4fe1b82f2c16.svg?style=flat-square)](https://img.shields.io/codacy/grade/b793d8d11fce4524bedf4fe1b82f2c16.svg)
 
 This Java library contains some convenience [APIs](http://intelecom.github.io/smsgw-client-java/apidocs/index.html) that lets you connect to the Intelecom SMS Gateway. Alternatively, you could integrate directly with one of the [interfaces](https://github.com/Intelecom/sms/blob/master/Interfaces-general.md) yourself.
 
